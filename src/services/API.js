@@ -1,6 +1,7 @@
 import axios, { CancelToken } from 'axios';
 import queryString from 'query-string';
 import * as Promise from 'bluebird';
+// eslint-disable-next-line
 import browserHistory from '../history';
 
 Promise.config({
@@ -77,11 +78,8 @@ export const makeEntityUpdater = (collectionName) => (id, attributes) =>
 instance.interceptors.response.use(
   (res) => res,
   (err) => {
-    // eslint-disable-next-line
     console.log('Error while requesting the API : ', err.response);
-    if (err.response && err.response.status === 401) {
-      browserHistory.push(`/login?redirectPath=${window.location.pathname}`);
-    }
+    // TODO redirect to /login in case of 401 (use browserHistory defined above)
     return Promise.reject(err);
   }
 );
