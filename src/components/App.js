@@ -16,6 +16,9 @@ function App() {
           </nav>
           <Redirect path="/" to="/login" />
           <Switch>
+            <Route exact path="/">
+              <Redirect to="/login" />
+            </Route>
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
           </Switch>
