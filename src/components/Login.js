@@ -1,11 +1,17 @@
 import { useForm } from 'react-hook-form';
+import API from '../services/API';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     console.log('sending credentials', data);
-    // TODO
+    try {
+      await API.post('/auth/login', data);
+      console.log('connected !');
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
